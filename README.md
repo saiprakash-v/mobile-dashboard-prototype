@@ -22,3 +22,9 @@ Run project with http-server
 ```console
 http-server -o
 ```
+
+or
+
+```console
+./node_modules/.bin/http-server -o
+```

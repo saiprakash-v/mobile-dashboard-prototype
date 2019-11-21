@@ -1,0 +1,16 @@
+{
+  "name": "mobile-dashboard-prototype",
+  "version": "0.0.1",
+  "description": "CAS Mobile Dashboard Prototype",
+  "dependencies": {
+    "http-server": "^0.11.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "serve": "http-server -o"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dimagi/mobile-dashboard-prototype.git"
+  },
+}

@@ -1,5 +1,5 @@
 {
-  "name": "CommCareHQ",
+  "name": "cas-mobile-dashboard",
   "version": "0.0.1",
   "dependencies": {
     "angular": "1.4.4",
@@ -9,7 +9,6 @@
   },
   "devDependencies": {
   },
-  "private": true,
   "resolutions": {
     "jquery": "3.2.1",
     "bootstrap": "3.3.7"

@@ -27,6 +27,9 @@ angular.module("mobileDashboard")
             //Information tab is closed in case it is open
             $scope.closeInformation();
         };
+        $scope.openNavMenu = function () {
+            $scope.$emit('open_nav_menu',{});
+        }
     }])
     .directive('programSummary', function () {
     return {

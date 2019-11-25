@@ -7,15 +7,9 @@ $ git clone https://github.com/dimagi/mobile-dashboard-prototype.git
 $ cd mobile-dashboard-protoype
 ```
 
-Install bower and http-server
+Install http-server
 ```console
-$ sudo npm -g install bower
-$ npm install http-server
-```
-
-Install project dependencies with bower
-```console
-$ bower install
+$ npm install
 ```
 
 Run project with http-server

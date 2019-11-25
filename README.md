@@ -9,7 +9,7 @@ $ cd mobile-dashboard-protoype
 
 Install http-server
 ```console
-$ npm install http-server
+$ npm install
 ```
 
 Run project with http-server

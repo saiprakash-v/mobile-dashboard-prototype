@@ -29,7 +29,20 @@ angular.module("mobileDashboard")
         };
         $scope.openNavMenu = function () {
             $scope.$emit('open_nav_menu',{});
-        }
+        };
+        $scope.showFilters = false;
+        $scope.displayFilters = function () {
+            $scope.showFilters = true;
+        };
+        $scope.$on('sending_filter_data',function(event, data) {
+            console.log('Filter data received');
+            console.log(data);
+            $scope.showFilters = false;
+        });
+        $scope.$on('close_filters',function() {
+            $scope.showFilters = false;
+        });
+
     }])
     .directive('programSummary', function () {
     return {

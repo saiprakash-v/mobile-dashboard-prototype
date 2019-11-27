@@ -45,11 +45,10 @@
         </div>
         <div class="summary-list">
             <div ng-repeat="summary in summaryList">
-                <div class="shadow rounded-border bg-white p-3 col-xs-11 mx-auto float-unset mb-3"
-                     ng-click="setInformation(summary.name, summary.info)">
+                <div class="shadow rounded-border bg-white p-3 col-xs-11 mx-auto float-unset mb-3">
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <p class="font-14 font-weight-600 font-montserrat mb-0">{{summary.name}}</p>
-                        <img src="/app/images/dark-info.png">
+                        <img src="/app/images/dark-info.png" ng-click="setInformation(summary.name, summary.info)">
                     </div>
                     <div class="col-xs-11 d-flex justify-content-between align-items-center mb-3 no-gutters float-unset">
                         <p class="mb-0 font-30 font-montserrat text-blue font-weight-500">{{summary.percentage}}%</p>

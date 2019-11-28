@@ -1,4 +1,4 @@
-let mobileDashboard = angular.module("mobileDashboard", ['ngRoute']);
+let mobileDashboard = angular.module("mobileDashboard", ['ngRoute', 'iosdatepicker']);
 
 mobileDashboard.config(['$routeProvider',
     function($routeProvider) {

@@ -26,7 +26,7 @@ angular.module("mobileDashboard")
             if (data.location) {
                 $scope.filterData['location'] = data.info;
             } else {
-                //assign filter data from date picker
+                $scope.filterData['date'] = data.info;
             }
             //sending data to program summary
             $scope.$emit('sending_filter_data', $scope.filterData);

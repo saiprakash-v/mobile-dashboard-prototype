@@ -13,6 +13,10 @@ mobileDashboard.config(['$routeProvider',
             templateUrl: '/app/templates/program-summary.html',
             controller: 'programSummaryController'
         }).
+        when('/see-more', {
+            templateUrl: '/app/templates/map-chart.html',
+            controller: 'mapChartController'
+        }).
         otherwise({
             redirectTo: '/error'
         });

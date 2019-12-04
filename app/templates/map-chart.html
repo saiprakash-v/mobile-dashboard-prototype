@@ -1,0 +1,72 @@
+<div class="app-bg min-vh-100" ng-controller="mapChartController">
+    <div ng-show="!showFilters">
+        <div class="bg-white">
+            <div class="filter-header">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex align-items-center">
+                        <img src="/app/images/back-icon.png" class="mr-2" ng-click="closeMapChartView()">
+                        <p class="font-montserrat font-weight-600 font-16 text-white mb-0">
+                            Prevalence of Underweight<br>[weight-for-age]
+                        </p>
+                    </div>
+                    <img src="/app/images/filter-icon.png" style="width: 50px" ng-click="displayFilters()">
+                </div>
+                <p class="font-montserrat font-weight-600 font-16 text-white" style="padding-left: 40px;">
+                    October 2018 | National
+                </p>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="col-xs-6 section-heading selectedSection" id="mapView" ng-click="changeView(0)">MAP VIEW</div>
+                <div class="col-xs-6 section-heading" id="chartView" ng-click="changeView(1)">CHART VIEW</div>
+            </div>
+        </div>
+        <div ng-show="currentSection == 'map'">
+            <!--        map view template goes here-->
+        </div>
+        <div ng-show="currentSection == 'chart'" style="padding-top: 10px">
+            <div class="chartView col-xs-11">
+                <div class="mb-3">
+                    <span class="font-16 font-montserrat font-weight-600 mr-3">Sectors Ranking</span>
+                    <img src="/app/images/dark-info.png" class="d-inline">
+                </div>
+                <div class="d-flex justify-content-between align-items-center"
+                     ng-repeat="location in chartViewData.report_data.all_locations">
+                    <a href="" ng-click="displayInfo(location.loc_name)" class="location-names" ng-bind="location.loc_name"
+                       data-toggle="modal" data-target="#infoModal" data-backdrop="false"></a>
+                    <p class="font-montserrat font-weight-600 font-16" ng-bind="location.percent+'%'"></p>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="infoModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" style="margin: 0">
+                <div class="modal-content col-xs-11 mx-auto float-unset no-gutters">
+                    <div class="modal-body rounded-border" style="background: #2C3648;">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <p class="mb-0 font-montserrat font-14 font-weight-600 text-white">October 2019</p>
+                            <img src="/app/images/white-close-icon.png" data-dismiss="modal" style="width: 15px">
+                        </div>
+                        <p class="font-weight-600 font-16 font-montserrat text-blue" ng-bind="selectedStateName"></p>
+                        <p class="font-weight-600 font-30 font-montserrat text-white" ng-bind="selectedStatePercentage"></p>
+                        <p class="font-weight-600 font-16 font-montserrat text-white">
+                            Total Children (0 - 5 yrs) weighed in given month
+                            <span class="text-red" ng-bind="selectedStateInfo.total"></span>
+                        </p>
+                        <p class="font-weight-600 font-16 font-montserrat text-white">
+                            No. of children severely underweighed (0 - 5 yrs)
+                            <span class="text-red" ng-bind="selectedStateInfo.severely_underweight"></span>
+                        </p>
+                        <p class="font-weight-600 font-16 font-montserrat text-white">
+                            No. of children normal (0 - 5 yrs)
+                            <span class="text-red" ng-bind="selectedStateInfo.normal"></span>
+                        </p>
+                        <p class="font-weight-600 font-16 font-montserrat text-white">
+                            No. of children moderately underweighed
+                            <span class="text-red" ng-bind="selectedStateInfo.moderately_underweight"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <filters ng-show="showFilters" ng-controller="filtersController"></filters>
+</div>

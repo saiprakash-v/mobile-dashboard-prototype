@@ -1,4 +1,4 @@
-let mobileDashboard = angular.module("mobileDashboard", ['ngRoute', 'iosdatepicker']);
+let mobileDashboard = angular.module("mobileDashboard", ['ngRoute', 'iosdatepicker', 'nvd3']);
 
 mobileDashboard.config(['$routeProvider',
     function($routeProvider) {
@@ -16,6 +16,10 @@ mobileDashboard.config(['$routeProvider',
         when('/see-more', {
             templateUrl: '/app/templates/map-chart.html',
             controller: 'mapChartController'
+        }).
+        when('/awc-reports', {
+            templateUrl: '/app/templates/awc-reports.html',
+            controller: 'awcReportsController'
         }).
         otherwise({
             redirectTo: '/error'

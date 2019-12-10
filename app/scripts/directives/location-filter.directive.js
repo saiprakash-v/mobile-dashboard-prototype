@@ -58,6 +58,22 @@ angular.module("mobileDashboard")
             $scope.showOptions = false;
             $scope.currentLocationOptions = [];
         });
+        $scope.$on('request_awc_filter_data',function(){
+            $scope.$emit('awc_filter_data',{'location': true, 'info' : $scope.selectedLocation });
+        });
+        $scope.$on('reset_awc_filter_data',function(){
+            $scope.currentHierarchyDepth = 0;
+            $scope.selectedLocation = {
+                0 : defaultLocation,
+                1 : defaultLocation,
+                2 : defaultLocation,
+                3 : defaultLocation,
+                4 : defaultLocation
+            };
+            $scope.currentLocationType = 'State';
+            $scope.showOptions = false;
+            $scope.currentLocationOptions = [];
+        });
     }])
     .directive('locationFilter', function () {
         return {

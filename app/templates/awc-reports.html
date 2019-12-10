@@ -1,0 +1,105 @@
+<!--    this section appears only when awc is not selected-->
+    <div class="app-bg min-vh-100" style="padding-bottom: 50px" ng-if="!awcAvailable">
+        <div class="bg-white">
+            <div class="filter-header">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex align-items-center">
+                        <img src="/app/images/menu-icon.png" class="mr-3" ng-click="openNavMenu()">
+                        <div>
+                            <p class="font-montserrat font-weight-600 font-16 text-white mb-0">AWC Reports</p>
+                            <p class="font-montserrat font-weight-600 font-16 text-white mb-0" ng-bind="selectedMonth"></p>
+                        </div>
+                    </div>
+                    <p class="font-montserrat font-weight-600 font-16 text-white mb-0" ng-click="resetFilters()">Reset</p>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="col-xs-6 section-heading selectedSection" id="locationSection" ng-click="changeFilterSection(1)">Location</div>
+                <div class="col-xs-6 section-heading" id="dateSection" ng-click="changeFilterSection(0)">Month & Year</div>
+            </div>
+        </div>
+        <location-filter ng-show="currentSection == 'location'" ng-controller="locationFilterController"></location-filter>
+        <month-filter ng-show="currentSection == 'date'" ng-controller="monthFilterController"></month-filter>
+        <div class="apply-button" ng-click="applyAWCFilters()">Apply</div>
+    </div>
+
+<!--    after selecting awc this section is visible-->
+    <div ng-if="awcAvailable">
+        <div class="app-bg h-100vh overflow-hidden" ng-show="!showFilters">
+            <div class="top-section p-3" style="padding-bottom: 25vh">
+                <div class="d-flex justify-content-between align-items-start mb-4">
+                    <div class="d-flex align-items-start">
+                        <img src="/app/images/menu-icon.png" class="mr-3" ng-click="openNavMenu()">
+                        <div>
+                            <p class="font-16 font-montserrat font-weight-600 text-white mb-0">
+                                AWC Reports
+                            </p>
+                            <p class="font-14 font-montserrat font-weight-500 text-white"
+                               ng-bind="selectedMonth + ' | ' + (selectedAWCCenter | limitTo: 12) +
+                            (selectedAWCCenter.length > 12 ? '...' : '')"></p>
+                        </div>
+                    </div>
+                    <img src="/app/images/filter-icon.png" style="width: 50px" ng-click="displayFilters()">
+                </div>
+                <div class="d-flex no-gutters align-items-center justify-content-around mb-5">
+                    <div class="position-relative" ng-click="changeOption(1)">
+                        <div class="options shadow yellow-gradient d-flex justify-content-center">
+                            <img src="/app/images/motherandchild.png">
+                        </div>
+                        <img src="/app/images/active-play-button.png" class="active-play-button" ng-if="currentOption==1">
+                    </div>
+                    <div class="position-relative" ng-click="changeOption(2)">
+                        <div class="options shadow red-gradient d-flex justify-content-center">
+                            <img src="/app/images/threegroup.png">
+                        </div>
+                        <img src="/app/images/active-play-button.png" class="active-play-button" ng-if="currentOption==2">
+                    </div>
+                    <div class="position-relative" ng-click="changeOption(3)">
+                        <div class="options shadow blue-gradient d-flex justify-content-center">
+                            <img src="/app/images/bulb.png">
+                        </div>
+                        <img src="/app/images/active-play-button.png" class="active-play-button" ng-if="currentOption==3">
+                    </div>
+                </div>
+                <p class="font-weight-700 text-white font-16 font-montserrat">{{currentOptionName}}</p>
+            </div>
+            <div class="summary-list">
+                <div class="bar-chart" ng-if="currentOption==2">
+                    <nvd3 options="chartOptions" data="chartData" class="with-3d-shadow with-transitions"></nvd3>
+                </div>
+                <div ng-repeat="kpiList in summaryList">
+                    <div ng-repeat="summary in kpiList">
+                        <div class="shadow rounded-border bg-white p-3 col-xs-11 mx-auto float-unset mb-3">
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <p class="font-14 font-weight-600 font-montserrat mb-0">{{summary.label}}</p>
+                                <img src="/app/images/dark-info.png" ng-show="summary.help_text"
+                                     ng-click="setInformation(summary.label, summary.help_text)">
+                            </div>
+                            <div class="col-xs-11 d-flex justify-content-between align-items-center mb-3 no-gutters float-unset" ng-show="summary.show_percent!==false">
+                                <p class="mb-0 font-30 font-montserrat text-blue font-weight-500"
+                                   ng-bind="(summary.percent | number:2) + '%'"></p>
+                                <div class="d-flex align-items-center">
+                                    <p class="mb-0 font-16 font-montserrat font-weight-500">({{summary.value}}/{{summary.all}})</p>
+                                    <img src="/app/images/up-arrow.png" ng-if="summary.color == 'red'">
+                                    <img src="/app/images/down-arrow.png" ng-if="summary.color == 'green'">
+                                </div>
+                            </div>
+                            <p class="mb-0 font-30 font-montserrat text-blue font-weight-500" ng-show="summary.show_percent===false"
+                               ng-bind="summary.value"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="summary-info">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex align-items-center col-xs-9 no-gutters">
+                        <img src="/app/images/gray-info.png" class="mr-3">
+                        <p class="mb-0 text-blue font-montserrat font-18 font-weight-600">{{currentHeading}}</p>
+                    </div>
+                    <img src="/app/images/white-close-icon.png" style="width: 20px" ng-click="closeInformation()">
+                </div>
+                <p class="mb-0 text-white font-montserrat font-16 font-weight-500">{{currentInformation}}</p>
+            </div>
+        </div>
+        <filters ng-show="showFilters" ng-controller="filtersController"></filters>
+    </div>

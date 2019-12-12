@@ -5,6 +5,7 @@ angular.module("mobileDashboard")
         $scope.currentHeading = '';
         $scope.currentInformation = '';
         $scope.currentOptionName = 'Maternal Child Nutrition';
+        $scope.showLoader = true;
         $scope.setInformation = function (heading, info) {
             $scope.currentInformation = info;
             $scope.currentHeading = heading;

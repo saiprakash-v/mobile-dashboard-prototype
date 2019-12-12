@@ -1,40 +1,111 @@
 <div class="sideNavigation" id="nav-menu">
     <img src="/app/images/white-close-icon.png" class="close-icon" ng-click="closeMenu()">
-    <p class="navigation-font">Abc Def</p>
-    <p class="navigation-font mb-5">abc@def.com</p>
-    <div class="menu-options">
-        <img src="/app/images/program-summary.png" class="mr-3">
-        <p class="navigation-font mb-0">Program Summary</p>
-    </div>
-    <div class="menu-options">
-        <img src="/app/images/mother.png" class="mr-3">
-        <p class="navigation-font mb-0">Maternal and Child Nutrition</p>
-    </div>
-    <div class="menu-options">
-        <img src="/app/images/stats-sidebar.png" class="mr-3">
-        <p class="navigation-font mb-0">ICDS-CAS Reach</p>
-    </div>
-    <div class="menu-options">
-        <img src="/app/images/threegroup-sidebar.png" class="mr-3">
-        <p class="navigation-font mb-0">Demographics</p>
-    </div>
-    <div class="menu-options">
-        <img src="/app/images/bulb-sidebar.png" class="mr-3">
-        <p class="navigation-font mb-0">AWC Infrastructure</p>
-    </div>
-    <hr>
-    <div class="menu-options">
-        <img src="/app/images/awc-reports.png" class="mr-3">
-        <p class="navigation-font mb-0">AWC Reports</p>
-    </div>
-    <hr>
-    <div class="menu-options">
-        <img src="/app/images/settings.png" class="mr-3">
-        <p class="navigation-font mb-0">Settings</p>
-    </div>
-    <div class="menu-options">
-        <img src="/app/images/logout.png" class="mr-3">
-        <p class="navigation-font mb-0">Logout</p>
+    <p class="navigation-font pl-3 pr-3 mb-0">Abc Def</p>
+    <p class="navigation-font pl-3 pr-3 mb-4">abc@def.com</p>
+    <div style="overflow: auto; height: calc(100vh - 100px)">
+        <div class="menu-options" id="programSummary" style="background: #363c51; border-right: 4px solid #00a8c6"
+             ng-click="selectMenuOption('programSummary')">
+            <img src="/app/images/program-summary.png" class="mr-3">
+            <p class="navigation-font mb-0">Program Summary</p>
+        </div>
+        <div class="menu-options" ng-click="expandOptions('nutrition')">
+            <img src="/app/images/mother.png" class="mr-3">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <p class="navigation-font mb-0">Maternal and Child Nutrition</p>
+                <img src="/app/images/drop-down.png">
+            </div>
+        </div>
+        <div>
+            <div id="nutrition">
+                <p class="navigation-font pl-3 pr-3 mb-0" id="underWeight" ng-click="selectMenuOption('underWeight')">
+                    Prevalence of Underweight (Weight-for-Age)</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="wasting" ng-click="selectMenuOption('wasting')">
+                    Prevalence of Wasting (Weight-for-Height)</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="stunting" ng-click="selectMenuOption('stunting')">
+                    Prevalence of Stunting (Height-for-Age)</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="newBorn" ng-click="selectMenuOption('newBorn')">
+                    Newborns with Low Birth Weight</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="initiation" ng-click="selectMenuOption('initiation')">
+                    Early Initiation of Breastfeeding</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="feeding" ng-click="selectMenuOption('feeding')">
+                    Exclusive Breastfeeding</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="complementaryFeeding"
+                   ng-click="selectMenuOption('complementaryFeeding')">
+                    Children initiated appropriate complementary feeding</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="deliveries" ng-click="selectMenuOption('deliveries')">
+                    Institutional deliveries</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="immunization" ng-click="selectMenuOption('immunization')">
+                    Immunization coverage (at age 1 year)</p>
+            </div>
+        </div>
+        <div class="menu-options" ng-click="expandOptions('reach')">
+            <img src="/app/images/stats-sidebar.png" class="mr-3">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <p class="navigation-font mb-0">ICDS-CAS Reach</p>
+                <img src="/app/images/drop-down.png">
+            </div>
+        </div>
+        <div>
+            <div id="reach">
+                <p class="navigation-font pl-3 pr-3 mb-0" id="awcDailyStatus" ng-click="selectMenuOption('awcDailyStatus')">
+                    AWCs Daily Status</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="awcLaunched" ng-click="selectMenuOption('awcLaunched')">
+                    AWCs Launched</p>
+            </div>
+        </div>
+        <div class="menu-options" ng-click="expandOptions('demographics')">
+            <img src="/app/images/threegroup-sidebar.png" class="mr-3">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <p class="navigation-font mb-0">Demographics</p>
+                <img src="/app/images/drop-down.png">
+            </div>
+        </div>
+        <div>
+            <div id="demographics">
+                <p class="navigation-font pl-3 pr-3 mb-0" id="households" ng-click="selectMenuOption('households')">
+                    Registered Households</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="enrolledChildren" ng-click="selectMenuOption('enrolledChildren')">
+                    Children enrolled for Anganwadi Services</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="enrolledWomen" ng-click="selectMenuOption('enrolledWomen')">
+                    Pregnant Women enrolled for Anganwadi Services</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="lactatingMothers" ng-click="selectMenuOption('lactatingMothers')">
+                    Lactating Mothers enrolled for Anganwadi Services</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="adolescentGirls" ng-click="selectMenuOption('adolescentGirls')">
+                    Adolescent Girls enrolled for Anganwadi Services</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="beneficiaries" ng-click="selectMenuOption('beneficiaries')">
+                    Aadhaar-seeded Beneficiaries</p>
+            </div>
+        </div>
+        <div class="menu-options" ng-click="expandOptions('infrastructure')">
+            <img src="/app/images/bulb-sidebar.png" class="mr-3">
+            <div class="d-flex justify-content-between align-items-center w-100">
+                <p class="navigation-font mb-0">AWC Infrastructure</p>
+                <img src="/app/images/drop-down.png">
+            </div>
+        </div>
+        <div>
+            <div id="infrastructure">
+                <p class="navigation-font pl-3 pr-3 mb-0" id="drinkingWater" ng-click="selectMenuOption('drinkingWater')">AWCs Reported Clean Drinking Water</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="functionalToilet" ng-click="selectMenuOption('functionalToilet')">AWCs Reported functional toilet</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="medicineKits" ng-click="selectMenuOption('medicineKits')">AWCs Reported medicine kits</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="infants" ng-click="selectMenuOption('infants')">AWCs Reported Weighing Scale: Infants</p>
+                <p class="navigation-font pl-3 pr-3 mb-0" id="weighingScale" ng-click="selectMenuOption('weighingScale')">AWCs Reported mother and child weighing scale</p>
+            </div>
+        </div>
+        <hr>
+        <div class="menu-options" id="awcReports" ng-click="selectMenuOption('awcReports')">
+            <img src="/app/images/awc-reports.png" class="mr-3">
+            <p class="navigation-font mb-0">AWC Reports</p>
+        </div>
+        <hr>
+        <div class="menu-options" id="settings" ng-click="selectMenuOption('settings')">
+            <img src="/app/images/settings.png" class="mr-3">
+            <p class="navigation-font mb-0">Settings</p>
+        </div>
+        <div class="menu-options">
+            <img src="/app/images/logout.png" class="mr-3">
+            <p class="navigation-font mb-0">Logout</p>
+        </div>
     </div>
 </div>
 <div ng-view></div>

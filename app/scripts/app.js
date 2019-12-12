@@ -21,6 +21,10 @@ mobileDashboard.config(['$routeProvider',
             templateUrl: '/app/templates/awc-reports.html',
             controller: 'awcReportsController'
         }).
+        when('/loading-screen', {
+            templateUrl: '/app/templates/loader.html',
+            controller: 'loaderController'
+        }).
         otherwise({
             redirectTo: '/error'
         });
